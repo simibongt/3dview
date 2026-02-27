@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D Viewer Test</title>
+
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    #status { padding: 12px; }
+    model-viewer { width: 100vw; height: 80vh; background: #f2f2f2; display: block; }
+  </style>
+</head>
+<body>
+  <div id="status">Loading…</div>
+
+  <model-viewer
+    id="mv"
+    src="./model.glb"
+    camera-controls
+    auto-rotate
+    environment-image="neutral"
+    exposure="1"
+    shadow-intensity="1"
+  ></model-viewer>
+
+  <script>
+    const status = document.getElementById('status');
+    const mv = document.getElementById('mv');
+
+    mv.addEventListener('load', () => status.textContent = '✅ Model loaded');
+    mv.addEventListener('error', (e) => {
+      console.error('model-viewer error', e);
+      status.textContent = '❌ Model failed to load. Open DevTools Console for details.';
+    });
+
+    // Also confirm model-viewer loaded at all
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!customElements.get('model-viewer')) {
+        status.textContent = '❌ model-viewer script did NOT load (blocked/offline).';
+      }
+    });
+  </script>
+</body>
+</html>
