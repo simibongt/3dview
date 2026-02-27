@@ -27,22 +27,28 @@
     shadow-intensity="1"
   ></model-viewer>
 
-  <script>
-    const status = document.getElementById('status');
-    const mv = document.getElementById('mv');
+<script>
+  const status = document.getElementById('status');
+  const mv = document.getElementById('mv');
 
-    mv.addEventListener('load', () => status.innerHTML = '🤗 Hi, nice to meet you :) <br>Talk to me: +41 78 721 22 93 Meet me online: simon.oetiker@gmail.com IRL: @Idaplatz');
-    mv.addEventListener('error', (e) => {
-      console.error('model-viewer error', e);
-      status.innerHTML = '❌ Model failed to load. <br>Please call Simon (+41 78 721 22 93).';
-    });
+  mv.addEventListener('load', () => {
+    status.innerHTML = `🤗 Hi, nice to meet you :)<br>
+      Talk to me: +41 78 721 22 93<br>
+      Meet me online: simon.oetiker@gmail.com<br>
+      IRL: @Idaplatz`;
+  });
 
-    // Also confirm model-viewer loaded at all
-    window.addEventListener('DOMContentLoaded', () => {
-      if (!customElements.get('model-viewer')) {
-        status.textContent = '❌ model-viewer script did NOT load (blocked/offline).';
-      }
-    });
-  </script>
+  mv.addEventListener('error', (e) => {
+    console.error('model-viewer error', e);
+    status.innerHTML = `❌ Model failed to load.<br>
+      Please call Simon (+41 78 721 22 93).`;
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!customElements.get('model-viewer')) {
+      status.textContent = '❌ model-viewer script did NOT load (blocked/offline).';
+    }
+  });
+</script>
 </body>
 </html>
