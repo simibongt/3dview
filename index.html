@@ -31,7 +31,7 @@
     const status = document.getElementById('status');
     const mv = document.getElementById('mv');
 
-    mv.addEventListener('load', () => status.textContent = '🤗 Hi, nice to meet you :) Talk to me: +41 78 721 22 93 Meet me online: simon.oetiker@gmail.com IRL: @Idaplatz');
+    mv.addEventListener('load', () => status.textContent = '🤗 Hi, nice to meet you :) <br>Talk to me: +41 78 721 22 93 Meet me online: simon.oetiker@gmail.com IRL: @Idaplatz');
     mv.addEventListener('error', (e) => {
       console.error('model-viewer error', e);
       status.textContent = '❌ Model failed to load. Please call Simon (+41 78 721 22 93).';
