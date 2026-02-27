@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>3D Viewer Test</title>
+  <title>3D Viewer</title>
 
   <!-- model-viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
@@ -11,9 +11,11 @@
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; }
     #status { padding: 12px; }
+    #footer { padding: 12px; }
     model-viewer { width: 100vw; height: 80vh; background: #f2f2f2; display: block; }
   </style>
 </head>
+
 <body>
   <div id="status">Loading…</div>
 
@@ -26,30 +28,38 @@
     exposure="1"
     shadow-intensity="1"
   ></model-viewer>
-  <!-- Neue Zeile unter dem Viewer -->
-  <div id="footer">
-    © 2026 Simon Oetiker — Concept Design / Engineering
-  </div>
-  
-<script>
-  const status = document.getElementById('status');
-  const mv = document.getElementById('mv');
 
-  mv.addEventListener('load', () => {
-    status.innerHTML = `🤗 Hi, nice to meet you :) /// Talk to me: +41 78 721 22 93 /// Meet me online: simon.oetiker@gmail.com /// IRL: @Idaplatz 🏘️`;
-  });
+  <div id="footer"></div>
 
-  mv.addEventListener('error', (e) => {
-    console.error('model-viewer error', e);
-    status.innerHTML = `❌ Model failed to load.<br>
-      Please call Simon (+41 78 721 22 93).`;
-  });
+  <script>
+    const status = document.getElementById('status');
+    const footer = document.getElementById('footer');
+    const mv = document.getElementById('mv');
 
-  window.addEventListener('DOMContentLoaded', () => {
-    if (!customElements.get('model-viewer')) {
-      status.textContent = '❌ model-viewer script did NOT load (blocked/offline).';
-    }
-  });
-</script>
+    mv.addEventListener('load', () => {
+      status.innerHTML = `🤗 Hi, nice to meet you :)<br>
+        Talk to me: +41 78 721 22 93<br>
+        Meet me online: simon.oetiker@gmail.com<br>
+        IRL: @Idaplatz`;
+
+      footer.innerHTML = `© 2026 Simon Oetiker<br>
+        Concept Design / Engineering`;
+    });
+
+    mv.addEventListener('error', (e) => {
+      console.error('model-viewer error', e);
+      status.innerHTML = `❌ Model failed to load.<br>
+        Please call Simon (+41 78 721 22 93).`;
+
+      footer.innerHTML = ``;
+    });
+
+    // Also confirm model-viewer loaded at all
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!customElements.get('model-viewer')) {
+        status.textContent = '❌ model-viewer script did NOT load (blocked/offline).';
+      }
+    });
+  </script>
 </body>
 </html>
