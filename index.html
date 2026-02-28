@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>3D Viewer</title>
 
-  <!-- model-viewer -->    // color (weiss: f2f2f2 hautfarben: ffe3c3 rosa/lavendel: f7daea)
+  <!-- model-viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
@@ -54,7 +54,7 @@
       footer.innerHTML = ``;
     });
 
-    // Also confirm model-viewer loaded at all
+    // Also confirm model-viewer loaded at allcolor (weiss: f2f2f2 hautfarben: ffe3c3 rosa/lavendel: f7daea)
     window.addEventListener('DOMContentLoaded', () => {
       if (!customElements.get('model-viewer')) {
         status.textContent = '❌ model-viewer script did NOT load (blocked/offline). Please text Simon (+41 78 721 22 93).';
